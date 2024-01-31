@@ -37,6 +37,9 @@ var HoleskyChainYml string
 //go:embed gnosis.chain.yml
 var GnosisChainYml string
 
+//go:embed devnet.chain.yml
+var DevnetChainYml string
+
 // validator names
 //
 //go:embed *.names.yml

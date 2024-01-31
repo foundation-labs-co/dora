@@ -43,6 +43,8 @@ func ReadConfig(cfg *types.Config, path string) error {
 			err = yaml.Unmarshal([]byte(config.HoleskyChainYml), &chainConfig)
 		case "gnosis":
 			err = yaml.Unmarshal([]byte(config.GnosisChainYml), &chainConfig)
+		case "devnet":
+			err = yaml.Unmarshal([]byte(config.DevnetChainYml), &chainConfig)
 		default:
 			return fmt.Errorf("tried to set known chain-config, but unknown chain-name")
 		}

@@ -1,0 +1,94 @@
+
+logging:
+  #outputLevel: "info"
+  #outputStderr: false
+
+  #filePath: "explorer.log"
+  #fileLevel: "warn"
+
+# Chain network configuration
+chain:
+  name: "devnet"
+
+# HTTP Server configuration
+server:
+  host: "0.0.0.0" # Address to listen on
+  port: "8080" # Port to listen on
+
+frontend:
+  enabled: true # Enable or disable to web frontend
+  debug: false
+  minimize: false # minimize html templates
+
+  # Name of the site, displayed in the title tag
+  siteName: "Dora the Explorer"
+  siteSubtitle: ""
+  
+  # link to EL Explorer
+  ethExplorerLink: ""
+
+  # file or inventory url to load validator names from
+  validatorNamesYaml: ""
+  validatorNamesInventory: ""
+  
+beaconapi:
+  # CL Client RPC
+  endpoint: "http://beacon-chain:3500"
+  # endpoint: "http://lighthouse-beacon-chain:5002"
+
+  # local cache for page models
+  localCacheSize: 100 # 100MB
+
+  # remote cache for page models
+  redisCacheAddr: ""
+  redisCachePrefix: ""
+
+# indexer keeps track of the latest epochs in memory.
+indexer:
+  # max number of epochs to keep in memory
+  inMemoryEpochs: 3
+
+  # disable synchronizing and everything that writes to the db (indexer just maintains local cache)
+  disableIndexWriter: false
+
+  # number of seconds to wait between each epoch (don't overload CL client)
+  syncEpochCooldown: 2
+
+  # maximum number of parallel validator set requests (might cause high memory usage)
+  maxParallelValidatorSetRequests: 1
+
+
+# blob storage configuration
+blobstore:
+  # persistence mode: none, db, fs, aws
+  persistenceMode: "none"
+  nameTemplate: ""
+  fs:
+    path: ""
+  aws:
+    accessKey: ""
+    secretKey: ""
+    s3Region: "eu-central-1"
+    s3Bucket: ""
+
+# database configuration
+database:
+  engine: "sqlite" # sqlite / pgsql
+
+  # sqlite settings
+  sqlite:
+    file: "./explorer-db.sqlite"
+
+  # pgsql settings
+  pgsql:
+    host: "127.0.0.1"
+    port: 5432
+    user: ""
+    password: ""
+    name: ""
+  pgsqlWriter: # optional separate writer connection (used for replication setups)
+    host: ""
+    port: 5432
+    user: ""
+    password: ""
+    name: ""

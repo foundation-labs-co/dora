@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  dora: 
+    build: .
+    container_name: 'dora'
+    volumes:
+      - $PWD:/data
+    ports:
+      - 9000:8080
+    command: |
+      -config=/data/config.yml
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
+    name: custom_network
